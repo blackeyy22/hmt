@@ -1,0 +1,11 @@
+.git
+.next
+out
+node_modules
+.env
+.env.*
+*.log
+*.zip
+*.tar.gz
+.DS_Store
+Thumbs.db

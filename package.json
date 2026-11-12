@@ -1,0 +1,19 @@
+{
+  "name": "hmt-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "check": "node --check public/app.js && node --check public/motion.js && node --check public/horizontal-scroll.js",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "dependencies": {
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "engines": {
+    "node": ">=22 <25"
+  }
+}
