@@ -18,6 +18,8 @@
         const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
         const delta = horizontal ? event.deltaX : event.deltaY;
         if (!delta) return;
+        const max = row.scrollWidth - row.clientWidth;
+        if (!horizontal && ((delta < 0 && row.scrollLeft <= 1) || (delta > 0 && row.scrollLeft >= max - 1))) return;
         const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? row.clientWidth : 1;
         event.preventDefault();
         interact();

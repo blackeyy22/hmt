@@ -742,9 +742,13 @@
       behavior: reduced ? 'instant' : 'smooth',
     });
   }
-  industryButtons.forEach((button) =>
-    button.addEventListener('click', () => selectIndustry(button)),
-  );
+  industryButtons.forEach((button) => {
+    button.addEventListener('click', () => selectIndustry(button));
+    button.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse') selectIndustry(button);
+    });
+    button.addEventListener('focus', () => selectIndustry(button));
+  });
   $$('[data-scroll^="industry-row:"]').forEach((button) =>
     button.addEventListener('click', () => {
       const current = industryButtons.findIndex(

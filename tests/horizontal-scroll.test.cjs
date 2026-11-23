@@ -51,7 +51,7 @@ test('pinch zoom and galleries without horizontal overflow retain browser behavi
   assert.equal(gallery(500).swipe({ deltaY: 120 }), false);
 });
 
-test('normalizes line/page input, Shift-wheel, and horizontal edge gestures', () => {
+test('normalizes line/page input and releases vertical scrolling at gallery edges', () => {
   const { row, swipe } = gallery();
   swipe({ deltaX: 2, deltaMode: 1 });
   assert.equal(row.scrollLeft, 282);
@@ -60,8 +60,11 @@ test('normalizes line/page input, Shift-wheel, and horizontal edge gestures', ()
   assert.equal(swipe({ deltaX: -5000 }), true);
   assert.equal(row.scrollLeft, 0);
   assert.equal(swipe({ deltaX: -100 }), true);
-  assert.equal(swipe({ deltaY: -100 }), true);
+  assert.equal(swipe({ deltaY: -100 }), false);
   assert.equal(row.scrollLeft, 0);
+  row.scrollLeft = row.scrollWidth - row.clientWidth;
+  assert.equal(swipe({ deltaY: 100 }), false);
+  assert.equal(swipe({ deltaY: -100 }), true);
 });
 
 test('a new gesture cancels delayed mobile story centering', () => {
