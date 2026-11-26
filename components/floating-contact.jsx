@@ -3,6 +3,15 @@ export default function FloatingContact() {
     <>
       <div className="fixed bottom-5 right-4 z-40 flex flex-col items-center gap-3 pb-[env(safe-area-inset-bottom)] sm:bottom-6 sm:right-5">
         <a
+          aria-label="Visit Dun & Bradstreet (opens in a new tab)"
+          className="grid h-12 w-12 place-items-center overflow-hidden rounded-full bg-white p-1 shadow-lift sm:h-14 sm:w-14"
+          href="https://www.dnb.co.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/assets/hmt/dnb-icon.png" alt="" className="h-full w-full object-contain" />
+        </a>
+        <a
           aria-label="Chat on WhatsApp"
           className="group relative grid h-12 w-12 place-items-center rounded-full text-white shadow-lift sm:h-14 sm:w-14 bg-[#25D366]"
           data-destination="https://wa.me/919023093018?text=Hello%20HMT%2C%20I%20would%20like%20to%20discuss%20a%20project."
