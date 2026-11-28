@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { watchHeroVideo } from '../lib/hero-video-readiness.mjs';
 import { createHeroScrubber } from '../lib/hero-video-scrubber.mjs';
 
+const PHONE_MEDIA = '(max-width: 767px), (max-width: 1023px) and (max-height: 600px) and (pointer: coarse)';
+
 export default function ScrollHero({
   videoSrc = '/assets/hmt/hero-client-web-552838be379d.mp4',
   poster = '/assets/hmt/hero-client-final-poster.jpg',
@@ -20,6 +22,9 @@ export default function ScrollHero({
   useEffect(() => {
     const section = sectionRef.current;
     const video = videoRef.current;
+    if (!review && matchMedia(PHONE_MEDIA).matches) {
+      video.poster = '/assets/hmt/hero-phone-poster-20261128.jpg';
+    }
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     let completed = false;
@@ -165,6 +170,7 @@ export default function ScrollHero({
           poster={poster}
           aria-label="A tour of an industrial manufacturing facility"
         >
+          {!review && <source src="/assets/hmt/hero-phone-web-20261128.mp4" media={PHONE_MEDIA} type="video/mp4" />}
           <source src={videoSrc} type="video/mp4" />
         </video>
         <div className="scroll-hero-shade" aria-hidden="true" />
